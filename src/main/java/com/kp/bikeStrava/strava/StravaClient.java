@@ -22,13 +22,15 @@ public class StravaClient {
 	}
 
 	/**
-	 * Pobiera strone aktywnosci zalogowanego sportowca. Bez parametrow before/after Strava zwraca je
-	 * od najnowszej do najstarszej.
+	 * Pobiera strone aktywnosci zalogowanego sportowca z podanego zakresu czasu
+	 * (epoch seconds, {@code after} wlacznie, {@code before} wylacznie).
 	 */
-	public List<ActivityDto> getActivities(int page, int perPage) {
+	public List<ActivityDto> getActivities(long after, long before, int page, int perPage) {
 		try {
 			List<ActivityDto> result = restClient.get()
 					.uri(uri -> uri.path("/athlete/activities")
+							.queryParam("after", after)
+							.queryParam("before", before)
 							.queryParam("page", page)
 							.queryParam("per_page", perPage)
 							.build())

@@ -10,6 +10,5 @@ public record StravaProperties(
 		String scope,
 		String oauthBaseUrl,
 		String apiBaseUrl,
-		int activitiesLimit,
 		String tokenFile) {
 }
